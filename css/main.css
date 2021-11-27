@@ -23,7 +23,6 @@ table {
     width: 400px;
     border-radius: 100%;
     border-color: black;
-    justify-content: space-evenly;
 }
 td {
     margin: 0 auto; 
@@ -32,8 +31,10 @@ td {
     text-align: center;
     padding: 20px 10px 20px 10px;
 }
-td div{
-    color: white; 
+img {
+    height: 200px;
+    width: 200px;
+    size: 200px;
 }
 button {
     margin: 20px 0 10px 0;

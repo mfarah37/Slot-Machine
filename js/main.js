@@ -1,13 +1,10 @@
 /*----- constants -----*/
-const seven = 'https://as2.ftcdn.net/v2/jpg/02/89/44/85/1000_F_289448550_5py2qUkakgdESICRz3gpCBZl2t9Q7Ud3.jpg'
-const cherry = 'https://cdn4.iconfinder.com/data/icons/slot-machines/512/Cherry-1024.png'
-const heart = 'https://cdn1.iconfinder.com/data/icons/casino-smooth-vol-2/256/HEART-1024.png'
-const score = {
-    0: seven,
-    1: cherry,
-    2: heart
-}
-
+const seven = document.createElement("img")
+seven.src = "imgs/seven.png" 
+const cherry = document.createElement("img")
+cherry.src = "imgs/cherry.png"
+const heart = document.createElement("img")
+heart.src = "imgs/heart.png" 
 
 const winningCombos = [
     [0, 0, 0],
@@ -38,17 +35,54 @@ function init() {
     // slotThree.addEventListener('click', pullLever)
 }
 function pullLever() {
+    // board = [
+    //     Math.floor(Math.random() * 3),
+    //     Math.floor(Math.random() * 3),
+    //     Math.floor(Math.random() * 3)
+    // ];
+    renderSlotOne();
+    renderSlotTwo();
+    renderSlotThree();
     checkWin()
 }
 function checkWin() {
-    if (board === winningCombos[0]) {
+    if (everyHelper(board, winningCombos[0])) {
            renderJackpotMessage()
-       } else if (board === winningCombos[1] || board === winningCombos[2]) {
+       } else if (everyHelper(board, winningCombos[1])) {
            renderWinningMessage()
+       } else if (everyHelper(board, winningCombos[2])) {
        } else {
            renderLosingMessage()
        }
 } 
+function renderSlotOne() {
+    if (board[0] === 0) {
+        slotOne.replaceWith(seven)
+    } else if (board[0] === 1) {
+        slotOne.replaceWith(cherry)
+    } else if (board[0] === 2) {
+        slotOne.replaceWith(heart)
+    }
+} 
+
+function renderSlotTwo() {
+    if (board[1] === 0) {
+        slotTwo.replaceWith(seven)
+    } else if (board[1] === 1) {
+        slotTwo.replaceWith(cherry)
+    } else if (board[1] === 2) {
+        slotTwo.replaceWith(heart)
+    }
+}
+function renderSlotThree() {
+    if (board[2] === 0) {
+        slotThree.replaceWith(seven)
+    } else if (board[2] === 1) {
+        slotThree.replaceWith(cherry)
+    } else if (board[2] === 2) {
+        slotThree.replaceWith(heart)
+    }
+}
 //Result Prompts
 function renderJackpotMessage() {
     resultEl.innerText = "$$$$$ JACKPOT $$$$$"
@@ -61,4 +95,9 @@ function renderWinningMessage() {
 }
 board = [0, 0, 0]
 console.log(board)
-console.log(winningCombos[0])
+// console.log(winningCombos[0])
+
+// helper functions
+function everyHelper(array, winCombo) {
+    return array.every((num, idx) => num === winCombo[idx])
+}
