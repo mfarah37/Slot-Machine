@@ -14,15 +14,13 @@ body {
     justify-content: center;
     background-color: black;
 }
-h1, h2 {
+h1, h2, h3 {
     color: white;
 }
 table {
     margin: 0 auto;
     height: 200px;
     width: 400px;
-    border-radius: 100%;
-    border-color: black;
 }
 td {
     margin: 0 auto; 
@@ -34,7 +32,6 @@ td {
 img {
     height: 200px;
     width: 200px;
-    size: 200px;
 }
 button {
     margin: 20px 0 10px 0;
@@ -44,3 +41,7 @@ button {
     background: white; 
 }
 
+.slot {
+    height: 200px;
+    width: 200px;
+}
