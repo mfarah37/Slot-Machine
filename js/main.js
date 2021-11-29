@@ -1,15 +1,16 @@
 /*----- constants -----*/
-let seven = 'imgs/seven.png'
-let cherry = 'imgs/cherry.png'
-let heart = 'imgs/heart.png'
-let wallet = 3000
+const seven = 'imgs/seven.png'
+const cherry = 'imgs/cherry.png'
+const heart = 'imgs/heart.png'
+const diamond = 'imgs/diamond.png'
 const winningCombos = [
     [0, 0, 0],
     [1, 1, 1],
-    [2, 2, 2]
+    [2, 2, 2],
+    [3, 3, 3]
 ]
 /*----- app's state (variables) -----*/
-let board;
+let board, wallet;
 
 /*----- cached element references -----*/
 let walletEl = document.getElementById('wallet')
@@ -23,14 +24,15 @@ const imgOne = document.createElement('img')
 const imgTwo = document.createElement('img')
 const imgThree = document.createElement('img')
 /*----- event listeners -----*/
-buttonEl.addEventListener('click', pullLever)
 buttonEl2.addEventListener('click', init)
 
 /*----- functions -----*/
 init()
 function init() {
     board = [null, null, null]
-    wallet = 3000
+    buttonEl.addEventListener('click', pullLever)
+    wallet = 5000
+    walletEl.innerText = `$${wallet}`
     slotOne.replaceChildren()
     slotTwo.replaceChildren()
     slotThree.replaceChildren()
@@ -38,28 +40,38 @@ function init() {
 }
 function pullLever() {
     board = [
-        Math.floor(Math.random() * 3),
-        Math.floor(Math.random() * 3),
-        Math.floor(Math.random() * 3)
+        Math.floor(Math.random() * 4),
+        Math.floor(Math.random() * 4),
+        Math.floor(Math.random() * 4)
     ];
     wallet = wallet - 250
-    walletEl
     renderSlotOne()
     renderSlotTwo()
     renderSlotThree()
+    updateWinnings()
     checkWin()
+    checkWallet()
 }
+//Check Win & Wallet
 function checkWin() {
-    if (everyHelper(board, winningCombos[0])) {
+    if (everySlot(board, winningCombos[0])) {
         renderJackpotMessage()
-    } else if (everyHelper(board, winningCombos[1])) {
+    } else if (everySlot(board, winningCombos[1])) {
         renderWinningMessage()
-    } else if (everyHelper(board, winningCombos[2])) {
+    } else if (everySlot(board, winningCombos[2])) {
+        renderWinningMessage()
+    } else if (everySlot(board, winningCombos[3])) {
         renderWinningMessage()
     } else {
         renderLosingMessage()
     }
 }
+function checkWallet() {
+    if (wallet === 0) {
+        buttonEl.removeEventListener('click', pullLever)
+    }
+}
+//Render Slots
 function renderSlotOne() {
     if (board[0] === 0) {
         imgOne.src = seven
@@ -69,6 +81,9 @@ function renderSlotOne() {
         slotOne.append(imgOne)
     } else if (board[0] === 2) {
         imgOne.src = heart
+        slotOne.append(imgOne)
+    } else if (board[0] === 3) {
+        imgOne.src = diamond
         slotOne.append(imgOne)
     }
 }
@@ -82,6 +97,9 @@ function renderSlotTwo() {
     } else if (board[1] === 2) {
         imgTwo.src = heart
         slotTwo.append(imgTwo)
+    } else if (board[1] === 3) {
+        imgTwo.src = diamond
+        slotTwo.append(imgTwo)
     }
 }
 function renderSlotThree() {
@@ -94,7 +112,23 @@ function renderSlotThree() {
     } else if (board[2] === 2) {
         imgThree.src = heart
         slotThree.append(imgThree)
+    } else if (board[2] === 3) {
+        imgThree.src = diamond
+        slotThree.append(imgThree)
     }
+}
+//Update Wallet
+function updateWinnings() {
+    if (everySlot(board, winningCombos[0])) {
+        wallet = wallet + 10000
+    } else if (everySlot(board, winningCombos[1])) {
+        wallet = wallet + 500
+    } else if (everySlot(board, winningCombos[2])) {
+        wallet = wallet + 250
+    } else if (everySlot(board, winningCombos[3])) {
+        wallet = wallet + 1000
+    }
+    walletEl.innerText =  `$${wallet}`
 }
 //Result Prompts
 function renderJackpotMessage() {
@@ -106,8 +140,7 @@ function renderLosingMessage() {
 function renderWinningMessage() {
     resultEl.innerText = "YOU WIN :) PLAY AGAIN?"
 }
-
-// helper functions
-function everyHelper(array, winCombo) {
+// Helper Function
+function everySlot(array, winCombo) {
     return array.every((num, idx) => num === winCombo[idx])
 }
