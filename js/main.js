@@ -34,6 +34,7 @@ function init() {
     buttonEl.style.color = 'black'
     wallet = 5000
     walletEl.innerText = `$${wallet}`
+    walletEl.style.color = 'rgb(123, 228, 114)'
     slotOne.replaceChildren()
     slotTwo.replaceChildren()
     slotThree.replaceChildren()
@@ -71,6 +72,7 @@ function checkWallet() {
     if (wallet === 0) {
         buttonEl.removeEventListener('click', pullLever)
         buttonEl.style.color = 'red'
+        walletEl.style.color = 'red'
     }
 }
 //Render Slots
