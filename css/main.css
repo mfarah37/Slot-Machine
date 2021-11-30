@@ -34,17 +34,22 @@ img {
     height: 200px;
     width: 200px;
 }
+.slot {
+    height: 200px;
+    width: 200px;
+}
 button {
     margin: 20px 0 10px 0;
     border: 10px solid yellow;
     border-radius: 50%;
     color: black;
     background: white; 
+    cursor: pointer;
 }
-
-.slot {
-    height: 200px;
-    width: 200px;
+button:hover {
+    transition: 1s ease-in-out;
+    background: rgb(95, 252, 5);
+    /* stroke-dashoffset: -500; */
 }
 span {
     color: rgb(123, 228, 114);

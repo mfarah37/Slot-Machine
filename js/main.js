@@ -31,6 +31,7 @@ init()
 function init() {
     board = [null, null, null]
     buttonEl.addEventListener('click', pullLever)
+    buttonEl.style.color = 'black'
     wallet = 5000
     walletEl.innerText = `$${wallet}`
     slotOne.replaceChildren()
@@ -69,6 +70,7 @@ function checkWin() {
 function checkWallet() {
     if (wallet === 0) {
         buttonEl.removeEventListener('click', pullLever)
+        buttonEl.style.color = 'red'
     }
 }
 //Render Slots
@@ -144,4 +146,3 @@ function slotTwoImg() {
 function slotThreeImg() {
     slotThree.append(imgThree)
 }
-
