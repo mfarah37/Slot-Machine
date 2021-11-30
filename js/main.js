@@ -144,3 +144,4 @@ function slotTwoImg() {
 function slotThreeImg() {
     slotThree.append(imgThree)
 }
+
