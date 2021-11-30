@@ -75,47 +75,38 @@ function checkWallet() {
 function renderSlotOne() {
     if (board[0] === 0) {
         imgOne.src = seven
-        slotOne.append(imgOne)
     } else if (board[0] === 1) {
         imgOne.src = cherry
-        slotOne.append(imgOne)
     } else if (board[0] === 2) {
         imgOne.src = heart
-        slotOne.append(imgOne)
     } else if (board[0] === 3) {
         imgOne.src = diamond
-        slotOne.append(imgOne)
     }
+    slotOneImg()
 }
 function renderSlotTwo() {
     if (board[1] === 0) {
         imgTwo.src = seven
-        slotTwo.append(imgTwo)
     } else if (board[1] === 1) {
         imgTwo.src = cherry
-        slotTwo.append(imgTwo)
     } else if (board[1] === 2) {
         imgTwo.src = heart
-        slotTwo.append(imgTwo)
     } else if (board[1] === 3) {
         imgTwo.src = diamond
-        slotTwo.append(imgTwo)
     }
+    slotTwoImg() 
 }
 function renderSlotThree() {
     if (board[2] === 0) {
         imgThree.src = seven
-        slotThree.append(imgThree)
     } else if (board[2] === 1) {
         imgThree.src = cherry
-        slotThree.append(imgThree)
     } else if (board[2] === 2) {
         imgThree.src = heart
-        slotThree.append(imgThree)
-    } else if (board[2] === 3) {
+     } else if (board[2] === 3) {
         imgThree.src = diamond
-        slotThree.append(imgThree)
     }
+    slotThreeImg()
 }
 //Update Wallet
 function updateWinnings() {
@@ -143,4 +134,13 @@ function renderWinningMessage() {
 // Helper Function
 function everySlot(array, winCombo) {
     return array.every((num, idx) => num === winCombo[idx])
+}
+function slotOneImg() {
+    slotOne.append(imgOne)
+}
+function slotTwoImg() {
+    slotTwo.append(imgTwo)
+}
+function slotThreeImg() {
+    slotThree.append(imgThree)
 }
