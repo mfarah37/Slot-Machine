@@ -135,7 +135,7 @@ function renderLosingMessage() {
 function renderWinningMessage() {
     resultEl.innerText = "YOU WIN :) PLAY AGAIN?"
 }
-// Helper Function
+// Helper Functions
 function everySlot(array, winCombo) {
     return array.every((num, idx) => num === winCombo[idx])
 }
